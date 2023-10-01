@@ -1,0 +1,63 @@
+.title {
+    text-align: center;
+    margin: 0 0 1rem;
+    line-height: 1.15;
+    font-size: 3.6rem;
+}
+
+.card {
+    max-width: 40%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 15px auto;
+    padding: 40px;
+}
+
+.card h3 {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.label {
+    margin-bottom: 15px;
+}
+
+.errorMsg {
+    color: red;
+}
+
+.submitButton {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.line {
+    margin-top: 20px;
+    height: 1px;         /* Height of the horizontal line */
+    background: #000;   /* Line color (black in this example) */
+    width: 100%;        /* Full width of the container */
+}
+
+.signIn {
+    margin-top: 15px;
+    text-align: center;
+    font-size: large;
+}
