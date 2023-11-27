@@ -46,13 +46,8 @@ export default function SignUp() {
         fetch(dataKey, {
             method: 'POST',
             cache: 'no-cache',
-            // credentials: 'same-origin',
-            // mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Access-Control-Allow-Origin':'*',
-                // 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS',
-                // 'Access-Control-Allow-Headers': 'Content-Type, Authorization',
             },
             body: JSON.stringify({
                 "emailAddress": formData.emailAddr,
@@ -83,7 +78,6 @@ export default function SignUp() {
             return resp;
         }).then((data) => {
             console.log(data);
-
         }).catch((error) => {
             console.log(error);
             setErrorMsg(JSON.stringify(error.message)) 

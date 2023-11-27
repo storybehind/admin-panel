@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "iron-session": "^6.3.1",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -14,5 +15,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.24",
+    "typescript": "5.2.2"
   }
 }

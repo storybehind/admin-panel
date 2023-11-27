@@ -1,0 +1,17 @@
+/* Layout.css */
+
+/* Style the overall layout container */
+.layout {
+  display: flex;
+  height: 100vh; /* Ensure the layout spans the entire viewport height */
+}
+
+/* Style the main content area */
+.main {
+  flex-grow: 1; /* Allow the main content to expand and fill available space */
+  padding: 20px; /* Add padding to the main content */
+  /* background-color: #f0f0f0; Set a background color */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the viewport height */
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,111 @@
+/* Sidebar.css */
+
+/* Sidebar container */
+.sidebar {
+    width: 20%;
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+    transition: left 0.3s ease-in-out;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Sidebar header */
+  .sidebarHeader {
+    padding: 20px;
+    text-align: left;
+    /* background-color: #222; */
+  }
+  
+  .sidebarHeader h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  
+  /* Sidebar navigation */
+  .sidebarNavigation {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menuIcon {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .sidebarNavigation li {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .sidebarNavigation li:hover {
+    background-color: lightslategrey; /* Hover background color (use your desired color) */
+  }
+  
+  .sidebarNavigation li.active {
+    background-color: #ccc;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+  
+  /* Sidebar footer */
+  .sidebarFooter {
+    padding: 20px;
+    text-align: center;
+    /* background-color: darkgrey; */
+    margin-top: auto;
+  }
+
+  .sideBarNotOpen {
+    width: 25px;
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+    transition: left 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .menuIconNotOpen {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* .userAvatar {
+    border-radius: 50%;
+    border: '1px solid #fff';
+  } */
+
+
+  
+  /* .logoutButton {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .logout-button:hover {
+    background-color: #ff4b32;
+  } */
+
+  .sidebarDivider {
+    border-top: 1px solid #F5F5F5; /* Define the separator's style */
+    margin: 10px 0; /* Add margin for spacing */
+    padding: 0; /* Remove padding to ensure a thin line */
+  }
+  

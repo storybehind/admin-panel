@@ -1,0 +1,104 @@
+.userPageList {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.searchbarContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+/* DropdownButton.module.css (or your preferred CSS file) */
+  
+  /* Dropdown button */
+  .dropbtn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space between text and arrow */
+    display: block;
+  }
+  
+  /* Dropdown content (initially hidden) */
+  .dropdownContent {
+    /* display: none; */
+    position: absolute;
+    background-color: #f9f9f9;
+    color: #333;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  /* Show the dropdown content when the button is hovered over */
+  .dropdownContent:hover {
+    background-color: #ddd;
+    display: block;
+  }
+
+  .searchInput[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 5px;
+    width: 100%;
+    }
+
+    .filters {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    /* Dropdown CSS */
+    .filter {
+        margin-left: 10px;
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        /* height: 100px; */
+        /* margin-top: 20px; */
+        display: flex; /* Use flexbox to place elements side by side */
+        align-items: center; 
+    }
+
+    .filterName {
+        font-style: italic;
+        text-align: center;
+        margin-left: 5px;
+    }
+
+    .filterDropDown {
+        margin-left: 5px;
+        margin-right: 5px;
+        position: relative;
+    }
+
+    .tableContainer {
+        margin-top: 10px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        }
+        
+    .th, .td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    }
+    
+    .th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    }
+  
+  
