@@ -1,0 +1,20 @@
+.tipbar {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.closeButton {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

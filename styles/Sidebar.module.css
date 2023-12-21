@@ -59,7 +59,7 @@
   
   /* Sidebar footer */
   .sidebarFooter {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     /* background-color: darkgrey; */
     margin-top: auto;
@@ -83,29 +83,15 @@
     cursor: pointer;
   }
 
-  /* .userAvatar {
-    border-radius: 50%;
-    border: '1px solid #fff';
-  } */
-
-
-  
-  /* .logoutButton {
-    background-color: #ff6347;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .logout-button:hover {
-    background-color: #ff4b32;
-  } */
-
   .sidebarDivider {
     border-top: 1px solid #F5F5F5; /* Define the separator's style */
     margin: 10px 0; /* Add margin for spacing */
     padding: 0; /* Remove padding to ensure a thin line */
+  }
+
+  .logoutOption {
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
   }
   

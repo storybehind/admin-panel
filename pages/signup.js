@@ -55,10 +55,6 @@ export default function SignUp() {
                 "password" : formData.password,
             }),
         }).then(async (response) => {
-            // console.log(response);
-            // if (!response.ok) {
-            //     throw new Error('Network response was not ok! Please try again later');
-            // }
             const resp = await response.json();
             console.log(resp);
             if (response.status === 409) {
@@ -84,23 +80,6 @@ export default function SignUp() {
         }).finally(() => {
             setIsLoading(false);
         })
-
-        // console.log(response);
-        // if (response.status === 201) {
-        //     router.push('/home');
-        // }
-        // else if (response.status === 500) {
-        //     setErrorMsg('server error! please try again later')
-        // }
-        // else if (response.status === 409) {
-        //     if (response.body.errorCode === 1) {
-        //         setErrorMsg('Email already exists');
-        //     }
-        //     else if (response.body.errorCode === 2) {
-        //         setErrorMsg('Username already taken');
-        //     }
-        // }
-        // setIsLoading(false);
     }
 
     return (

@@ -1,13 +1,12 @@
-
 import fetchJson, { FetchError } from '../lib/fetchJson';
 import config from '../config';
 import Layout from '../components/Layout'
 import {useRouter } from 'next/router';
 import {AuthContext, PageContext} from '../contexts/context'
-import UserListPage from '../components/UserListPage';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Dashboard.module.css'
 import Image from 'next/image';
+import TipBar from '../components/Tipbar';
 
 
 export default function Dashboard({user}) {
@@ -25,18 +24,12 @@ export default function Dashboard({user}) {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchBy, setSearchBy] = useState('all');
     const [users, setUsers] = useState([]);
-    // const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [roleFilter, setRoleFilter] = useState('');
     const [errorMsg, setErrorMsg] = useState(null);
+    const [tipBarMsg, setTipBarMsg] = useState(null);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(10); // Number of users per page
-    const [totalPages, setTotalPages] = useState(null);
-
-    // const toggleDropdown = () => {
-    //   setDropdownOpen(!isDropdownOpen);
-    //   console.log(isDropdownOpen);
-    // };
 
     const handleSearchByChange = (event) => {
       console.log(event.target.value);
@@ -50,6 +43,29 @@ export default function Dashboard({user}) {
     const handleRoleFilterChange = (event) => {
       console.log(event.target.value);
       setRoleFilter(event.target.value);
+    }
+
+    const updateRole = async (username, newrole) => {
+      console.log(username, newrole);
+      const dataKey = config.serverAddr + `v1/updateRole`;
+        try {
+            const resp = await fetchJson(dataKey, {
+                method: 'PUT',
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  "username": username,
+                  "newrole" : newrole,
+                }),
+            });
+            console.log(resp);
+            setTipBarMsg(`${resp.data.username} is updated to ${resp.data.role} role`);
+        } catch (error) {
+            console.error('An unexpected error happened:', error);
+            setTipBarMsg(`Server error! Please try again later!`);
+        }
     }
 
     useEffect(() => {
@@ -69,7 +85,6 @@ export default function Dashboard({user}) {
               const usersData = await fetchJson(config.serverAddr + `v1/list?${queryParams}`, {
                 method: 'GET',
                 credentials: "include",
-                // headers: { cookie },
               });
               console.log(usersData);
               console.log(usersData.data.totalCount);
@@ -85,7 +100,7 @@ export default function Dashboard({user}) {
           }
         } 
         fetchData();
-    }, [searchBy, searchQuery, roleFilter, currentPage]);
+    }, [searchBy, searchQuery, roleFilter, currentPage, tipBarMsg]);
 
     if (errorMsg) {
         return (
@@ -104,6 +119,7 @@ export default function Dashboard({user}) {
         <PageContext.Provider value={sidebarData}>
           <Layout>
               <div>
+                {tipBarMsg && <TipBar message={tipBarMsg} onClose={() => setTipBarMsg(null)}/>}
                 <p>Welcome to dashboard page {user.username}</p>
                 <div className={styles.userPageList}>
                   <div className={styles.searchbarContainer}>
@@ -137,6 +153,7 @@ export default function Dashboard({user}) {
                           className={`${styles.dropbtn}  ${styles.filterDropDown}`}
                         >
                           <option value="" className={styles.dropdownContent}>None</option>
+                          <option value="root" className={styles.dropdownContent}>Root</option>
                           <option value="admin" className={styles.dropdownContent}>Admin</option>
                           <option value="user" className={styles.dropdownContent}>User</option>
                         </select> 
@@ -150,23 +167,41 @@ export default function Dashboard({user}) {
                             <th className={styles.th}>Username</th>
                             <th className={styles.th}>Email</th>
                             <th className={styles.th}>Role</th>
+                            <th className={styles.th}>Promote</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {users.map((user, index) => (
+                          {users.map((u1, index) => (
                             <tr key={index}>
                               <td className={styles.td}>
                                 <Image 
-                                  src={user.avatarUrl !== null ? user.avatarUrl : "/default_user.png"} 
+                                  src={u1.avatarUrl !== null ? u1.avatarUrl : "/default_user.png"} 
                                   width={24}
                                   height={24}
                                   style={{ borderRadius: '50%', overflow: 'hidden'}}
                                   alt='user_photo'
                                   />
                               </td>
-                              <td className={styles.td}>{user.username}</td>
-                              <td className={styles.td}>{user.email}</td>
-                              <td className={styles.td}>{user.role}</td>
+                              <td className={styles.td}>{u1.username}</td>
+                              <td className={styles.td}>{u1.email}</td>
+                              <td className={styles.td}>{u1.role}</td>
+                              <td className={styles.td}>
+                                <div>
+                                  {(u1.role === 'user' && (
+                                    <button className={styles.promote} onClick={() => {
+                                      updateRole(u1.username, 'admin')
+                                    }}>Promote</button>
+                                  ))}
+
+                                  {
+                                    (user.role === 'root' && u1.role === 'admin' && (
+                                      <button className={styles.depromote} onClick={() => {
+                                        updateRole(u1.username, 'user')
+                                      }}>Depromote</button>
+                                    ))
+                                  }
+                                </div>   
+                              </td>
                             </tr>
                           ))}
                         </tbody>

@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
-import styles from '../styles/Sidebar.module.css'; // Import your CSS file for styling
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import styles from '../styles/Sidebar.module.css';
 import { AuthContext, PageContext } from '../contexts/context';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { redirect } from 'next/dist/server/api-utils';
+import config from '../config';
+import fetchJson from '../lib/fetchJson';
 
 export default function() {
     
@@ -12,6 +13,29 @@ export default function() {
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     }
+
+    const handleLogout = async (event) => {
+        // Clear authentication information
+        event.preventDefault();
+        console.log(event.target);
+
+        const dataKey = config.serverAddr + `v1/logout`;
+        try {
+            const resp = await fetchJson(dataKey, {
+                method: 'PUT',
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(resp);
+        } catch (error) {
+            console.error('An unexpected error happened:', error)
+        }
+        
+        // Redirect to the login page
+        router.push('/signin');
+      };
 
     const user = useContext(AuthContext);
     const page = useContext(PageContext);
@@ -53,7 +77,6 @@ export default function() {
                         }}>
                             Invite
                     </li>
-                    {/* Add more navigation items here */}
                 </ul>
 
                 <hr className={styles.sidebarDivider} />
@@ -69,6 +92,10 @@ export default function() {
                         />
                     <h3> {user.username} </h3>
                 </div>
+
+                <div className={styles.logoutOption} onClick={handleLogout}>
+                    Logout
+                </div>
             </div>
         )
     }
@@ -82,5 +109,3 @@ export default function() {
     )
 
 };
-
-// export default Sidebar;
